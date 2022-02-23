@@ -13,6 +13,9 @@
 		220C92C427A3F81D00D849F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220C92C227A3F81D00D849F2 /* Main.storyboard */; };
 		220C92C627A3F82000D849F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 220C92C527A3F82000D849F2 /* Assets.xcassets */; };
 		220C92C927A3F82000D849F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220C92C727A3F82000D849F2 /* LaunchScreen.storyboard */; };
+		220C92D127A52E5000D849F2 /* PrayerTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220C92D027A52E4F00D849F2 /* PrayerTimeManager.swift */; };
+		220C92D327A53C2B00D849F2 /* PrayerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220C92D227A53C2B00D849F2 /* PrayerData.swift */; };
+		220C92D827A5465400D849F2 /* PrayerTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220C92D727A5465400D849F2 /* PrayerTimeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		220C92C527A3F82000D849F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		220C92C827A3F82000D849F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		220C92CA27A3F82000D849F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		220C92D027A52E4F00D849F2 /* PrayerTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTimeManager.swift; sourceTree = "<group>"; };
+		220C92D227A53C2B00D849F2 /* PrayerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerData.swift; sourceTree = "<group>"; };
+		220C92D727A5465400D849F2 /* PrayerTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTimeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,40 @@
 			children = (
 				220C92BC27A3F81D00D849F2 /* AppDelegate.swift */,
 				220C92BE27A3F81D00D849F2 /* SceneDelegate.swift */,
-				220C92C027A3F81D00D849F2 /* ViewController.swift */,
-				220C92C227A3F81D00D849F2 /* Main.storyboard */,
+				220C92D427A543D700D849F2 /* ViewController */,
+				220C92D627A543F500D849F2 /* Models */,
+				220C92D527A543E800D849F2 /* Views */,
 				220C92C527A3F82000D849F2 /* Assets.xcassets */,
 				220C92C727A3F82000D849F2 /* LaunchScreen.storyboard */,
 				220C92CA27A3F82000D849F2 /* Info.plist */,
 			);
 			path = "Sajda (copy)";
+			sourceTree = "<group>";
+		};
+		220C92D427A543D700D849F2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				220C92C027A3F81D00D849F2 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		220C92D527A543E800D849F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				220C92C227A3F81D00D849F2 /* Main.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		220C92D627A543F500D849F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				220C92D027A52E4F00D849F2 /* PrayerTimeManager.swift */,
+				220C92D227A53C2B00D849F2 /* PrayerData.swift */,
+				220C92D727A5465400D849F2 /* PrayerTimeModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				220C92C127A3F81D00D849F2 /* ViewController.swift in Sources */,
+				220C92D827A5465400D849F2 /* PrayerTimeModel.swift in Sources */,
 				220C92BD27A3F81D00D849F2 /* AppDelegate.swift in Sources */,
 				220C92BF27A3F81D00D849F2 /* SceneDelegate.swift in Sources */,
+				220C92D327A53C2B00D849F2 /* PrayerData.swift in Sources */,
+				220C92D127A52E5000D849F2 /* PrayerTimeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
