@@ -9,7 +9,7 @@ import UIKit
 import UserNotifications
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var fajrTime: UILabel!
     @IBOutlet weak var sunriseTime: UILabel!
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.prayerTimeManager.fetchTime(cityName: city)
-            })
+        })
         
         weekDayLabel.text = Date().dayOfWeek()
         dateLabel.text = self.getCurrentDate()
@@ -63,17 +63,6 @@ class ViewController: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(swiped))
         swipeRight.direction = .right
         self.view.addGestureRecognizer(swipeRight)
-        
-//        //Sending notifications
-//        //1. Ask for permission
-//
-//        center.requestAuthorization(options: [.alert, .sound ]) { (granted, error)  in
-//            if (!granted){
-//                print("Permission denied!")
-//
-//        }
-        
-        
     }
     
     @objc func swiped() {
@@ -84,18 +73,18 @@ class ViewController: UIViewController {
                               options: .transitionCrossDissolve,
                               animations: {
                 self.timeLabel.isHidden = false
-                          })
+            })
             UIView.transition(with: nextNamazLabel, duration: 0.4,
                               options: .transitionCrossDissolve,
                               animations: {
                 self.nextNamazLabel.isHidden = false
-                          })
+            })
         } else {
             UIView.transition(with: namazTable, duration: 0.4,
                               options: .transitionCrossDissolve,
                               animations: {
                 self.namazTable.isHidden = false
-                          })
+            })
             timeLabel.isHidden = true
             nextNamazLabel.isHidden = true
         }
@@ -117,7 +106,7 @@ extension ViewController: PrayerTimeManagerDelegate {
             self.ishaTime.text = prayerTime.ishaTime
         }
     }
-
+    
     func didFailWithError(error: Error) {
         print(error)
     }
@@ -130,44 +119,15 @@ extension ViewController: PrayerTimeManagerDelegate {
         formatter.amSymbol = "AM"
         formatter.pmSymbol = "PM"
         let timeString = formatter.string(from: Date())
-//        let calendar = Calendar.current
-
+        
         let fajr = formatter.date(from: prayerTime.fajrTime)
         let sunrise = formatter.date(from: prayerTime.sunriseTime)
         let dhuhr = formatter.date(from: prayerTime.dhuhrTime)
         let asr = formatter.date(from: prayerTime.asrTime)
         let maghrib = formatter.date(from: prayerTime.maghribTime)
         let isha = formatter.date(from: prayerTime.ishaTime)
-
+        
         let secondTime = formatter.date(from: timeString)
-        
-//        //Create the notification content
-//        let content = UNMutableNotificationContent()
-//        content.title = "Asr"
-//        content.body = "Time to pray"
-//        content.sound = UNNotificationSound.default
-//
-//        //3. Create the notificatin trigger
-//        var dateInfo = DateComponents()
-//        dateInfo.hour = 16
-//        dateInfo.minute = 38
-//
-//        let trigger = UNCalendarNotificationTrigger(dateMatching: dateInfo, repeats: false)
-//
-//        //4. Create the request
-//        let uuidString = UUID().uuidString
-//
-//        let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-        
-//        //5.Register the request
-//        center.add(request) { error in
-//            //Check the error parametr and handle any error
-//            if let error = error {
-//                print("Error \(error.localizedDescription)")
-//            }else{
-//                print("send!!")
-//            }
-//        }
         
         DispatchQueue.main.async {
             if isha?.compare(secondTime!) == .orderedAscending || isha?.compare(secondTime!) == .orderedSame {
@@ -183,8 +143,6 @@ extension ViewController: PrayerTimeManagerDelegate {
                 self.currentNamazLabel.textColor = .systemBlue
                 self.timeLabel.text = self.fajrTime.text
                 self.nextNamazLabel.text = "Fajr"
-//                dateInfo.hour = calendar.component(.hour, from: fajr!)
-//                dateInfo.minute = calendar.component(.minute, from: fajr!)
             } else if maghrib?.compare(secondTime!) == .orderedAscending || maghrib?.compare(secondTime!) == .orderedSame {
                 self.maghribTime.textColor = .green
                 self.asrTime.textColor = .white
@@ -198,8 +156,6 @@ extension ViewController: PrayerTimeManagerDelegate {
                 self.currentNamazLabel.textColor = .systemBlue
                 self.timeLabel.text = self.ishaTime.text
                 self.nextNamazLabel.text = "Isha"
-//                dateInfo.hour = calendar.component(.hour, from: isha!)
-//                dateInfo.minute = calendar.component(.minute, from: isha!)
             } else if asr?.compare(secondTime!) == .orderedAscending || asr?.compare(secondTime!) == .orderedSame {
                 self.asrTime.textColor = .green
                 self.dhuhrTime.textColor = .white
@@ -213,8 +169,6 @@ extension ViewController: PrayerTimeManagerDelegate {
                 self.currentNamazLabel.textColor = .systemBlue
                 self.timeLabel.text = self.maghribTime.text
                 self.nextNamazLabel.text = "Maghrib"
-//                dateInfo.hour = calendar.component(.hour, from: maghrib!)
-//                dateInfo.minute = calendar.component(.minute, from: maghrib!)
             } else if dhuhr?.compare(secondTime!) == .orderedAscending || dhuhr?.compare(secondTime!) == .orderedSame {
                 self.dhuhrTime.textColor = .green
                 self.sunriseTime.textColor = .white
@@ -228,8 +182,6 @@ extension ViewController: PrayerTimeManagerDelegate {
                 self.currentNamazLabel.textColor = .systemBlue
                 self.timeLabel.text = self.asrTime.text
                 self.nextNamazLabel.text = "Asr"
-//                dateInfo.hour = calendar.component(.hour, from: asr!)
-//                dateInfo.minute = calendar.component(.minute, from: asr!)
             } else if sunrise?.compare(secondTime!) == .orderedAscending || sunrise?.compare(secondTime!) == .orderedSame {
                 self.sunriseTime.textColor = .green
                 self.maghribTime.textColor = .white
@@ -243,8 +195,6 @@ extension ViewController: PrayerTimeManagerDelegate {
                 self.currentNamazLabel.textColor = .systemBlue
                 self.timeLabel.text = self.dhuhrTime.text
                 self.nextNamazLabel.text = "Dhuhr"
-//                dateInfo.hour = calendar.component(.hour, from: dhuhr!)
-//                dateInfo.minute = calendar.component(.minute, from: dhuhr!)
             } else if fajr?.compare(secondTime!) == .orderedAscending || fajr?.compare(secondTime!) == .orderedSame {
                 self.fajrTime.textColor = .green
                 self.maghribTime.textColor = .white
@@ -258,8 +208,6 @@ extension ViewController: PrayerTimeManagerDelegate {
                 self.currentNamazLabel.textColor = .systemBlue
                 self.timeLabel.text = self.sunriseTime.text
                 self.nextNamazLabel.text = "Sunrise"
-//                dateInfo.hour = calendar.component(.hour, from: sunrise!)
-//                dateInfo.minute = calendar.component(.minute, from: sunrise!)
             } else if secondTime?.compare(fajr!) == .orderedAscending || secondTime?.compare(fajr!) == .orderedSame {
                 self.ishaTime.textColor = .green
                 self.maghribTime.textColor = .white
@@ -273,8 +221,6 @@ extension ViewController: PrayerTimeManagerDelegate {
                 self.currentNamazLabel.textColor = .systemBlue
                 self.timeLabel.text = self.fajrTime.text
                 self.nextNamazLabel.text = "Fajr"
-//                dateInfo.hour = calendar.component(.hour, from: fajr!)
-//                dateInfo.minute = calendar.component(.minute, from: fajr!)
             }
         }
     }
@@ -282,23 +228,23 @@ extension ViewController: PrayerTimeManagerDelegate {
 
 extension Date {
     func dayOfWeek() -> String? {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE"
-            return dateFormatter.string(from: self).capitalized
-            // or use capitalized(with: locale) if you want
-        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter.string(from: self).capitalized
+        // or use capitalized(with: locale) if you want
+    }
 }
 
 extension ViewController {
     func getCurrentDate() -> String {
         // get the current date and time
         let currentDateTime = Date()
-
+        
         // initialize the date formatter and set the style
         let formatter = DateFormatter()
         formatter.timeStyle = .none
         formatter.dateStyle = .long
-
+        
         // get the date time String from the date object
         return formatter.string(from: currentDateTime) // October 8, 2016 at 10:48:53 PM
     }
